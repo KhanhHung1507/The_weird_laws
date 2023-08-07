@@ -17,6 +17,7 @@ public class Doors : MonoBehaviour
         this.Door();
         this.ButtonDoor();
         this.InteractWithDoor();
+        this.OpenTheDoor();
     }
 
     private void Door()
@@ -40,17 +41,26 @@ public class Doors : MonoBehaviour
     private void InteractWithDoor()
     {
         if(!testforPlayer.boolen) return;
-
         TouchOn _touch = Button.GetComponent<TouchOn>();
-        if(!_touch.touch) return;
-        
+        if(!_touch.touch) return;    
         _touch.touch = false;
         if(!open)
         {
             open = true;
             return;
         }
-
         open = false;
+    }
+
+    private void OpenTheDoor()
+    {
+        GameObject wall = GameObject.Find("Door"); 
+        BoxCollider2D wallBox = wall.GetComponent<BoxCollider2D>();
+        if(!open) 
+        {
+            wallBox.enabled = true;
+            return;
+        }       
+        wallBox.enabled = false;
     }
 }

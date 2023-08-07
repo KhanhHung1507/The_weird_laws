@@ -8,11 +8,6 @@ public class TouchOn : MonoBehaviour
 
     public void Touch()
     {
-        if(!touch) 
-        {   
-            touch = true;
-            return;
-        }
-        touch = false;
+        touch = !touch;
     }
 }
